@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    #wrapper{
+    background: url("http://imgur.com/zVhgRVY.png");
+    background-repeat: no-repeat;
+    margin: auto;
+    width: 1215px;
+    height: 717px;
+    
+}
+body{
+    background-color: #000000;
+}
+h1 {
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+}
+h2 {
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+}
+.loginform{
+    padding-top: 30%;
+    padding-left: 35%;
+}
+input{
+    border-bottom: solid;
+    border-bottom-color: white;
+    background-color: #1f1f1f;
+    border: none;
+    height: 45px;
+    width: 400px;
+    font-weight: bolder;
+    text-align: center;
+    color: #CDCDCD;
+    margin-right: 100%;
+    display:block;
+}
+.submit{
+    height: 50px;
+    width: 402px;
+    background-color: darkgreen;
+}
+
+::-webkit-input-placeholder {
+   font-style: italic;
+   color: #CCCCCC;
+   
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-style: italic;
+   color: #CCCCCC;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-style: italic;
+   color: #CCCCCC;
+}
+
+:-ms-input-placeholder {  
+   font-style: italic;
+   color: #CCCCCC;
+}
+</style>
+<title>Ivern Statistical Portal</title>
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body>
+    <div id="wrapper">
+        <h1><i>Ivern Statistical Portal</i></h1>
+        <h2>Summoner Lookup</h2>
+        <div class="loginform">
+            <form method="POST" action="/search">
+                <input type="text" name="Search" placeholder="Summoner Name" autofocus autocomplete="off" required/> <br><br>
+                <input class="submit" type="submit" value="Search Summoner"/>
+            </form><br/>
+        </div>
+    </div>
+</body>
+</html>
