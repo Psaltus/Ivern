@@ -5,4 +5,6 @@ Please note that this does not display extensive information about each match. W
 
 Also, you must supply your own Riot API key from their website.  I cannot leave my key in or else they can revoke it.
 
-If you want to, please feel free to make your own changes based on this code, and please let me know via eamil if you decide to work on it! I would love to see this code improved, and see what others have done to it.
+If you want to, please feel free to make your own changes based on this code, and please let me know via email if you decide to work on it! I would love to see this code improved, and see what others have done to it.
+
+Since this was my first project with Go, I may extend its capabilities in the future, but for now it's done :)
