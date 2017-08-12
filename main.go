@@ -17,17 +17,17 @@ type Output struct {
 	HighestAchievedSeasonTier string
 
 	Match []struct {
-		Name      string
-		Lane      string `json:"lane"`
-		Champion  int    `json:"champion"`
-		Season    string `json:"season"`
-		Region    string `json:"region"`
-		MatchID   int64  `json:"matchId"`
-		Queue     string `json:"queue"`
-		Role      string `json:"role"`
-		Timestamp int64  `json:"timestamp"`
-		Image     string
-		Stats     struct {
+		Name       string
+		Lane       string `json:"lane"`
+		GameID     int64  `json:"gameId"`
+		Champion   int    `json:"champion"`
+		PlatformID string `json:"platformId"`
+		Timestamp  int64  `json:"timestamp"`
+		Queue      int    `json:"queue"`
+		Role       string `json:"role"`
+		Season     int    `json:"season"`
+		Image      string
+		Stats      struct {
 			ParticipantIdentities []struct {
 				Player struct {
 					CurrentPlatformID string `json:"currentPlatformId"`
@@ -230,31 +230,26 @@ a:link {
 a:visited{
 	color: LightGreen;
 }
-
 </style>
 <body>
 <form method="POST" action="/search">
      <input type="text" name="Search" placeholder="Summoner Name" autocomplete="off" required/> <input class="submit" type="submit" value="Search Summoner"/>
 </form>
-<h1>{{ .SummonerName }} <img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/profileicon/{{.ProfileIconID}}.png" height=70px width=70px> </h1>
-
+<h1>{{ .SummonerName }} <img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/profileicon/{{.ProfileIconID}}.png" height=70px width=70px> </h1>
 <h1>Highest Rank this Season: {{ .HighestAchievedSeasonTier }}</h1> <br/><br/>
-
-
 Here's your match history:<br/>
-
 	
 {{range .Match}}
 {{$PartID := .Stats.ParticipantID}}
 _________________________________________________________________________________________________<br/>
-<h2 div="ChampionHeader"><img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/champion/{{.Name}}.png" height="60px" width="60px"></img> <i>{{.Name}}</i></h2> <a href="http://matchhistory.na.leagueoflegends.com/en/#match-details/NA1/{{.MatchID}}/{{$.AccountID}}?tab=overview">Link to Official Stats!</a> 
+<h2 div="ChampionHeader"><img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/champion/{{.Name}}.png" height="60px" width="60px"></img> <i>{{.Name}}</i></h2> <a href="http://matchhistory.na.leagueoflegends.com/en/#match-details/NA1/{{.GameID}}/{{$.AccountID}}?tab=overview">Link to Official Stats!</a> 
 			
 			{{range .Stats.Participants}}
 				{{if eq $PartID .ParticipantID}}
 				<table border=1 {{if .Stats.Win}} bordercolor="GREEN" {{else}} bordercolor="RED" {{end}}>	
 					<tr>
-						<td rowspan=2><img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/{{ .Spell1Full }}" height="60px" width="60px"></img><br/>
-						<img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/spell/{{ .Spell2Full }}" height="60px" width="60px"></img></td>
+						<td rowspan=2><img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/spell/{{ .Spell1Full }}" height="60px" width="60px"></img><br/>
+						<img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/spell/{{ .Spell2Full }}" height="60px" width="60px"></img></td>
 						
 						<td> <img src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/score.png"></img><br/>
 							 <b div="kda"> {{ .Stats.Kills }} / {{ .Stats.Deaths }} / {{ .Stats.Assists }} </b></td>
@@ -274,28 +269,27 @@ ________________________________________________________________________________
 						<td rowspan=2>
 						<img src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/items.png"></img> <br/>
 							{{if gt .Stats.Item0 0}}
-							<img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/item/{{ .Stats.Item0 }}.png" width="60px" height="60px"></img>
+							<img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/item/{{ .Stats.Item0 }}.png" width="60px" height="60px"></img>
 							{{end}}
 							{{if gt .Stats.Item1 0}}
-							<img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/item/{{ .Stats.Item1 }}.png" width="60px" height="60px"></img>
+							<img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/item/{{ .Stats.Item1 }}.png" width="60px" height="60px"></img>
 							{{end}}
 							{{if gt .Stats.Item2 0}}
-							<img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/item/{{ .Stats.Item2 }}.png" width="60px" height="60px"></img>
+							<img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/item/{{ .Stats.Item2 }}.png" width="60px" height="60px"></img>
 							{{end}}<br/>
 							{{if gt .Stats.Item3 0}}
-							<img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/item/{{ .Stats.Item3 }}.png" width="60px" height="60px"></img>
+							<img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/item/{{ .Stats.Item3 }}.png" width="60px" height="60px"></img>
 							{{end}}
 							{{if gt .Stats.Item4 0}}
-							<img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/item/{{ .Stats.Item4 }}.png" width="60px" height="60px"></img>
+							<img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/item/{{ .Stats.Item4 }}.png" width="60px" height="60px"></img>
 							{{end}}
 							{{if gt .Stats.Item5 0}}
-							<img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/item/{{ .Stats.Item5 }}.png" width="60px" height="60px"></img>
+							<img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/item/{{ .Stats.Item5 }}.png" width="60px" height="60px"></img>
 							{{end}}
 							{{if gt .Stats.Item6 0}}
-							<img src="http://ddragon.leagueoflegends.com/cdn/7.9.2/img/item/{{ .Stats.Item6 }}.png" width="60px" height="60px"></img>
+							<img src="http://ddragon.leagueoflegends.com/cdn/7.16.1/img/item/{{ .Stats.Item6 }}.png" width="60px" height="60px"></img>
 							{{end}}
 						</td>
-
 					</tr>
 					<tr>
 						<td>
@@ -316,12 +310,11 @@ ________________________________________________________________________________
 			{{end}}
 		
 {{ end }}
-
 </body>
 `
 
 //API-Key for Riot Developers
-const apiKey string = ""
+const apiKey string = "RGAPI-4a498f08-e081-4c98-84f5-f1d8162fadbb"
 
 //Our http Client which will be making the API Calls
 var client = &http.Client{}
@@ -449,7 +442,7 @@ func summonerSearch() {
 
 	//New API call to the URL below, requesting Match History. As there are API limits in place, and I have only been given access to Ranked matches,
 	//I have set the limit to 5 Matches per API Call.  If this is to change in the future, we can update the URL accordingly
-	url = "https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/" + strconv.Itoa(record.ID) + "?endIndex=5&beginIndex=0&api_key=" + apiKey
+	url = "https://na1.api.riotgames.com/lol/match/v3/matchlists/by-account/" + strconv.Itoa(record.AccountID) + "?endIndex=5&beginIndex=0&api_key=" + apiKey
 
 	log.Println(url)
 
@@ -483,11 +476,11 @@ func summonerSearch() {
 		getChampionName(out.Match[i].Champion, i)
 
 		fmt.Print(out.Match[i].Name + " ")
-		fmt.Println(strconv.FormatInt(out.Match[i].MatchID, 10))
+		fmt.Println(strconv.FormatInt(out.Match[i].GameID, 10))
 
 		//Lastly, we need the Match information for each individual Match.
 		//Just like getChampionName, getMatchInfo requires the MatchID as well as the iteration of the loop.
-		getMatchInfo(out.Match[i].MatchID, i)
+		getMatchInfo(out.Match[i].GameID, i)
 
 	}
 
@@ -495,7 +488,7 @@ func summonerSearch() {
 
 func getChampionName(x int, i int) {
 	//New URL specifically for Champion information.
-	url := "https://global.api.riotgames.com/api/lol/static-data/NA/v1.2/champion/" + strconv.Itoa(x) + "?champData=image&api_key=" + apiKey
+	url := "https://na1.api.riotgames.com/lol/static-data/v3/champions/" + strconv.Itoa(x) + "?locale=en_US&tags=image&api_key=" + apiKey
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
