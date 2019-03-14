@@ -314,7 +314,7 @@ ________________________________________________________________________________
 `
 
 //API-Key for Riot Developers
-const apiKey string = "RGAPI-4a498f08-e081-4c98-84f5-f1d8162fadbb"
+const apiKey string
 
 //Our http Client which will be making the API Calls
 var client = &http.Client{}
